@@ -1,11 +1,12 @@
 ﻿using System.Globalization;
+using ServiceStack;
 using Web.Model;
 
 namespace Web.Service
 {
     public class EntryService : ServiceBase
     {
-        public object Any(Entry request)
+        public object Post(Entry request)
         {
             var trackedData = UserSession.GetTrackedData(request.Time.Date) ?? new TrackedData { Goal = 300 };
             trackedData.Total += request.Amount;

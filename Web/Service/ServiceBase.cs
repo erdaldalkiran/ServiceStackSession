@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Web.Model;
-
-namespace Web.Service
+﻿namespace Web.Service
 {
-    public abstract class ServiceBase :ServiceStack.Service
+    using ServiceStack;
+    using Model;
+
+    public abstract class ServiceBase : ServiceStack.Service
     {
         protected CustomUserSession UserSession
         {
             get
             {
-                return base.SessionAs<CustomUserSession>();
+                var baseSession = base.SessionAs<AuthUserSession>();
+                var session = base.SessionAs<CustomUserSession>();
+
+                return session;
             }
         }
+
     }
 }
